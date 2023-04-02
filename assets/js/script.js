@@ -6,11 +6,11 @@ city +
 APIKey + 
 "&units=imperial";
 
-const currentData = {};
-const fiveDayData = {};
 
 // var today = moment().format('L');
 var searchHistory = [];
+const currentData = {};
+const fiveDayData = {};
 
 // Function to get current weather data from API
 function currentConditions(city) {
