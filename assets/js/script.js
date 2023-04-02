@@ -1,12 +1,4 @@
 var APIKey = "69383b3abe7567a76337fff968d33b7d";
-var city = document.getElementById("searchCity").value;
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + 
-city + 
-"&appid=" + 
-APIKey + 
-"&units=imperial";
-
-
 // var today = moment().format('L');
 var searchHistory = [];
 const currentData = {};
@@ -24,23 +16,51 @@ function currentConditions(city) {
   
 
     fetch(queryURL)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    .then(res=> res.json())
+    .then((data) => {
+     console.log(data);
+     showCurrent(data);
 
-    showCurrent();
-//Function to show a card populated by the data from API for searched city
-function showCurrent(){ 
-
-    const cityDisplayName = document.querySelectorAll(".currentWeatherCityName")
-    const currentDisplayTemp = document.querySelectorAll(".currentWeatherTemp")
-    const currentDisplayConditions = document.querySelectorAll(".currentWeatherCondition")
-    const currentDisplayWind = document.querySelectorAll(".currentWeatherWind")
-
-
+ });
     
+
    
+//Function to show a card populated by the data from API for searched city
+function showCurrent(city){ 
+
+    const cityDisplayName = document.querySelector("#currentWeatherCityName");
+    cityDisplayName.textContent = city.name;
+    const currentDisplayTemp = document.querySelector("#currentWeatherTemp");
+    currentDisplayTemp.textContent = city.main.temp + "°F";
+    const currentDisplayConditions = document.querySelector("#currentWeatherCondition");
+    currentDisplayConditions.textContent = city.weather.main;
+    const currentDisplayWind = document.querySelector("#currentWeatherWind");
+    currentDisplayWind.textContent = city.wind.speed + " MPH";
+
+    document.getElementById("currentWeatherCard").style.display = "block";
 }
+
+// // Function to get 5 day forecast for searched city
+// function fiveDayForecast(city) {
+//     var city = document.getElementById("searchCity").value;
+//     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + 
+//     city + 
+//     "&appid=" + 
+//     APIKey + 
+//     "&units=imperial";
+
+//     fetch(queryURL)
+//     .then(res => res.json())
+//     .then((data)=> {
+//         console.log(data);
+//         fiveDayForecast(data);
+//     })
+
+
+// };
+
 };
+
 
 
 
