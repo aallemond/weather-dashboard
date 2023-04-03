@@ -5,9 +5,28 @@ const currentData = {};
 const fiveDayData = {};
 
 // Function to get current weather data from API
+// function currentConditions(city) {
+//     var city = document.getElementById("searchCity").value;
+//     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + 
+//     city + 
+//     "&appid=" + 
+//     APIKey + 
+//     "&units=imperial";
+
+  
+
+//     fetch(queryURL)
+//     .then(res=> res.json())
+//     .then((data) => {
+//      console.log(data);
+//      showCurrent(data);
+
+//  });
+
+//Function to get 5 day forecast for searched city
 function currentConditions(city) {
     var city = document.getElementById("searchCity").value;
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + 
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + 
     city + 
     "&appid=" + 
     APIKey + 
@@ -20,45 +39,36 @@ function currentConditions(city) {
     .then((data) => {
      console.log(data);
      showCurrent(data);
+     showfiveDay(data);
 
  });
     
 
    
-//Function to show a card populated by the data from API for searched city
-function showCurrent(city){ 
+//Function to show a current weather card populated by the data from API for searched city
+function showCurrent(data){ 
 
     const cityDisplayName = document.querySelector("#currentWeatherCityName");
-    cityDisplayName.textContent = city.name;
+    cityDisplayName.textContent = data.city.name;
     const currentDisplayTemp = document.querySelector("#currentWeatherTemp");
-    currentDisplayTemp.textContent = city.main.temp + "°F";
+    currentDisplayTemp.textContent = Number(data.list[i = 0].main.temp).toFixed(0) + "°F";
     const currentDisplayConditions = document.querySelector("#currentWeatherCondition");
-    currentDisplayConditions.textContent = city.weather.main;
+    currentDisplayConditions.textContent = data.list[i = 0].weather[i=0].main;
     const currentDisplayWind = document.querySelector("#currentWeatherWind");
-    currentDisplayWind.textContent = city.wind.speed + " MPH";
+    currentDisplayWind.textContent ="Wind Speed: " + Number(data.list[i=0].wind.speed).toFixed(0) + " MPH";
 
     document.getElementById("currentWeatherCard").style.display = "block";
+
+
 }
 
-// // Function to get 5 day forecast for searched city
-function fiveDayForecast(city) {
-    var city = document.getElementById("searchCity").value;
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + 
-    city + 
-    "&appid=" + 
-    APIKey + 
-    "&units=imperial";
+//Function to show five day forecast
+function showfiveDay(data){
+const fiveDayTemp = document.querySelector('#fiveDayOneTemp');
+fiveDayTemp.textContent = Number(data.list[i = 1].main.temp).toFixed(0) + "°F";
 
-    fetch(queryURL)
-    .then(res => res.json())
-    .then((data)=> {
-        console.log(data);
-        showFiveDay(data);
-    })
-
-
-};
-
+document.getElementById("fiveDayCard").style.display = "block"
+}
 };
 
 
