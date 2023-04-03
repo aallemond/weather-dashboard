@@ -41,23 +41,23 @@ function showCurrent(city){
 }
 
 // // Function to get 5 day forecast for searched city
-// function fiveDayForecast(city) {
-//     var city = document.getElementById("searchCity").value;
-//     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + 
-//     city + 
-//     "&appid=" + 
-//     APIKey + 
-//     "&units=imperial";
+function fiveDayForecast(city) {
+    var city = document.getElementById("searchCity").value;
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + 
+    city + 
+    "&appid=" + 
+    APIKey + 
+    "&units=imperial";
 
-//     fetch(queryURL)
-//     .then(res => res.json())
-//     .then((data)=> {
-//         console.log(data);
-//         fiveDayForecast(data);
-//     })
+    fetch(queryURL)
+    .then(res => res.json())
+    .then((data)=> {
+        console.log(data);
+        showFiveDay(data);
+    })
 
 
-// };
+};
 
 };
 
