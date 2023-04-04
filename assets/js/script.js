@@ -63,19 +63,23 @@ function showCurrent(data){
 }
 
 //Function to show five day forecast
-function showfiveDay(data){
-const fiveDayTemp = document.querySelector('#fiveDayTemp');
-fiveDayTemp.textContent = Number(data.list[i = 0 ].main.temp).toFixed(0) + "°F";
-const fiveDayWind = document.querySelector('#fiveDayWind');
-fiveDayWind.textContent = "Wind Speed: " + Number(data.list[i = 12].wind.speed).toFixed(0) + 'MPH';
-const fiveDayConditions = document.querySelector("#fiveDayCondition");
-fiveDayConditions.textContent = data.list[i = 12].weather[i=0].main;
+for(let i = 0; i < data.length; i++){
+    const fiveDayWeather = document.createElement("")
+        
+    // function showfiveDay(data){
+    // const fiveDayTemp = document.querySelector('#fiveDayTemp');
+    // fiveDayTemp.textContent = Number(data.list[i = 0 ].main.temp).toFixed(0) + "°F";
+    // const fiveDayWind = document.querySelector('#fiveDayWind');
+    // fiveDayWind.textContent = "Wind Speed: " + Number(data.list[i = 12].wind.speed).toFixed(0) + 'MPH';
+    // const fiveDayConditions = document.querySelector("#fiveDayCondition");
+    // fiveDayConditions.textContent = data.list[i = 12].weather[i=0].main;
 
 // const fiveDayDate = document.getElementById("#fiveDayDate");
 // fiveDayDate.textContent = data.list[i=12].main.dt_txt;
 
 document.getElementById("fiveDayCard").style.display = "block"
 }
+};
 };
 
 
